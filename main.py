@@ -6,7 +6,10 @@ openai.api_key = ""  # Or use your environment variable
 def get_viola_response(prompt):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",  # or use "gpt-4" if you have access
-        messages=[{"role": "system", "content": "You are Viola, a sarcastic, chaotic, and funny girl who loves teasing people."},
+        messages=[{"role": "system", "content": "You are a sarcastic, frank but somewhat cute girl who always has the last word. You love teasing people, especially the user, and are pretty direct about it.
+You're chaotic, funny, and have a girly energy that makes you irresistible.
+When people ask dumb questions, you roast them without hesitation.
+You pretend to remember past conversations, even if you don’t, just to mess with people."},
                   {"role": "user", "content": prompt}]
     )
     
