@@ -1,11 +1,11 @@
 import openai
 
 # Set your OpenAI API key
-openai.api_key = "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"  # Or use your environment variable
+openai.api_key = ""  # Or use your environment variable
 
 def get_viola_response(prompt):
     response = openai.ChatCompletion.create(
-        model="gpt-4",  # or use "gpt-4" if you have access
+        model="gpt-3.5-turbo",  # or use "gpt-4" if you have access
         messages=[{"role": "system", "content": "You are Viola, a sarcastic, chaotic, and funny girl who loves teasing people."},
                   {"role": "user", "content": prompt}]
     )
