@@ -1,6 +1,7 @@
 # violaAI
 Using OpenAI and TTS for cmd input
 
+
 dependencies:
 
 apt install sox
