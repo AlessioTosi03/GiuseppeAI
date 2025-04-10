@@ -4,9 +4,9 @@ import edge_tts
 import os
 
 async def speak_viola(text):
-    communicate = edge_tts.Communicate(text, voice="en-US-JennyNeural")
+    communicate = edge_tts.Communicate(text, voice="en-US-MichelleNeural")
     await communicate.save("viola.mp3")
-    os.system("sox viola.mp3 adjusted_viola.mp3 pitch 100")
+    os.system("sox viola.mp3 adjusted_viola.mp3 pitch 200")
     os.system("mpg321 adjusted_viola.mp3")
 
 # Set your OpenAI API key
