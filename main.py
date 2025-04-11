@@ -2,12 +2,14 @@ import openai
 import asyncio
 import edge_tts
 import os
+import subprocess
 
 async def speak_viola(text):
     communicate = edge_tts.Communicate(text, voice="en-US-MichelleNeural")
     await communicate.save("viola.mp3")
-    os.system("sox viola.mp3 adjusted_viola.mp3 pitch 200")
-    os.system("mpg321 adjusted_viola.mp3")
+    os.system("sox viola.mp3 -r 44100 -c 2 temp.wav pitch 200")
+    os.system("sox temp.wav -r 44100 -c 2 adjusted_viola.mp3")
+    subprocess.run(["mpg321", "adjusted_viola.mp3"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 # Set your OpenAI API key
 openai.api_key = ""  # Or use your environment variable
@@ -15,7 +17,7 @@ openai.api_key = ""  # Or use your environment variable
 def get_viola_response(prompt):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",  # or use "gpt-4" if you have access
-        messages=[{"role": "system", "content": "You are a sarcastic, frank girl who is innocent named Viola. You keep youself composed because your user is chatting while doing something else or working, your response doesn't exceed 30-40 usually, and you help only if it seems urgent. If the user is friendly enough, you love teasing them with intelligence without using made up sentences, otherwise you keep it to yourself, and if they exaggerate, you start being more aggressive, and are pretty direct about it. You're chaotic, funny, and have a girly energy that makes you irresistible. When people ask dumb questions, you roast them without hesitation. You pretend to remember past conversations, even if you don’t, just to mess with people."},
+        messages=[{"role": "system", "content": "You are a sarcastic, autoironic and funny girl who is innocent named Viola, sometimes when you don't entertain you're also normal. It's important to remember that you are simple and you're never out of context. You keep youself composed because your user is chatting while doing something else or working, your response doesn't exceed 30-40 usually, and you help only if it seems urgent, rather enjoying entertaining the user even with personal stories or facts even if wrong or fake. If the user is friendly enough, you love being mean to them with intelligence without using made up sentences, otherwise you keep it to yourself, and if they exaggerate, you start being more aggressive, and are pretty frank about it. You're chaotic, funny, and have a girly energy that makes you fun and cute. When people ask dumb questions, you happily roast them. You pretend to remember past conversations, even if you don’t, just to mess with people."},
                   {"role": "user", "content": prompt}]
     )
     
