@@ -8,6 +8,7 @@ apt install sox
 
 apt instal mpg321
 
-pip install openai
 
-pip install edge_tts
+all pip dependecies are technically loaded in automatic, but make sure to be in a virtual environment. They are listed below:
+
+openai, edge_tts, whisper, sounddevice, scipy
