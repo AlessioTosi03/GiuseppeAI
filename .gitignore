@@ -1,2 +1,6 @@
 *.mp3
 *.wav
+./__pycache__/
+*.pyc
+*.pyo
+*.pyd
