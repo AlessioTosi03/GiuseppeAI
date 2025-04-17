@@ -10,7 +10,9 @@ imports = {
     "edge_tts": "edge_tts",
     "whisper": "whisper",
     "sounddevice": "sd",  # custom alias
-    "scipy.io.wavfile": "wav"
+    "scipy.io.wavfile": "wav",
+    "simpleaudio": "sa",
+    "pydub": "pydub",
 }
 
 print("Checking for required packages... (this may take a while)")
