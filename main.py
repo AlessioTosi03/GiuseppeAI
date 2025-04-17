@@ -3,7 +3,7 @@ from utils import chat_with_viola
 from loader import openai, whisper
 
 # Set your OpenAI API key
-openai.api_key = "sk-306d16c8c04a42c2ad0e01c7b7ee7905"  # Or use your environment variable
+openai.api_key = "PUT_HERE_KEY"  # Or use your environment variable
 openai.api_base = "https://api.deepseek.com/v1"
 RECORD_SECONDS = 6
 FILENAME = "input.wav"
