@@ -62,7 +62,9 @@ def find_microphone():
 
     for i, device in enumerate(devices):
         if device['max_input_channels'] > 0:  # Device with input channels
-            if "Audio" in device['name']:
+            if "Mic" in device['name']:
+                return i
+            elif "Audio" in device['name']:
                 return i  # Return the device ID of the first microphone found
 
     raise ValueError("No microphone found")
@@ -107,7 +109,6 @@ def get_viola_response(prompt, language, last_four, message_history):
     message_history.append(response['choices'][0]['message']['content'].strip())
     return response['choices'][0]['message']['content'].strip(), message_history
 
-# Example chat function
 async def chat_with_viola(FILENAME, RECORD_SECONDS, MODEL):
     print("🎤 Ciao! input I for Italian, ES for Spanish, or E for English.")
     choice = input().strip().upper()
@@ -120,7 +121,7 @@ async def chat_with_viola(FILENAME, RECORD_SECONDS, MODEL):
             print("Assistant: Hey, it's me! Let's chat!")
             language = "en"
         elif choice == "ES":
-            print("Assistant: Hola! Soy Giuseppe! ¿Cómo puedo ayudarte hoy?")
+            print("Assistant: Hola! Soy Giuseppe! ¿Cómo puedo ayudarte hoy? \"exit\" para uscire.")
             language = "es"
         else:
             print("Viola: Please choose I for Italian, ES for Spanish, or E for English")
@@ -131,7 +132,6 @@ async def chat_with_viola(FILENAME, RECORD_SECONDS, MODEL):
     t_input = input().strip().upper()
     message_history = []
     while True:
-        #user_input = input("You: ")
         if t_input == "T":
             user_input = input("You: ")
         else:
