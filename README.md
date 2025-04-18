@@ -43,6 +43,7 @@ All required packages will be installed automatically, but ensure you're working
 ```bash
 pip install openai edge_tts whisper sounddevice scipy
 ```
+
 ### 5️⃣ **Run the Application**
 1. Open a terminal in the project directory
 2. ```bash
