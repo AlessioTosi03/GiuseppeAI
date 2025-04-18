@@ -1,5 +1,5 @@
 import io
-from loader import openai, edge_tts, sd, wav, pydub, pygame, np
+from loader import openai, edge_tts, sd, wav, pydub, pygame
 from pydub import AudioSegment
 from pydub.playback import play
 

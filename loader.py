@@ -12,7 +12,6 @@ imports = {
     "sounddevice": "sd",  # custom alias
     "scipy.io.wavfile": "wav",
     "pydub": "pydub",
-    "numpy": "np",
     "pygame": "pygame",
 }
 
