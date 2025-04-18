@@ -1,19 +1,52 @@
-import subprocess
-import os
-from loader import openai, edge_tts, sd, wav
+import io
+from loader import openai, edge_tts, sd, wav, pydub, pygame, np
+from pydub import AudioSegment
+from pydub.playback import play
 
 async def speak_viola(text, language):
     if language == "it":
         voice = "it-IT-GiuseppeMultilingualNeural"
-        pitch = "0"
     else:
         voice = "en-US-MichelleNeural"
-        pitch = "200"
+
     communicate = edge_tts.Communicate(text, voice=voice)
-    await communicate.save("viola.mp3")
-    os.system(f"sox viola.mp3 -r 44100 -c 2 temp.wav pitch {pitch} tempo 1.2")
-    os.system("sox temp.wav -r 44100 -c 2 adjusted_viola.mp3")
-    subprocess.run(["mpg321", "adjusted_viola.mp3"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    audio_stream = io.BytesIO()
+
+    async for chunk in communicate.stream():
+        if chunk["type"] == "audio":
+            audio_stream.write(chunk["data"])
+    audio_stream.seek(0)
+
+    try:
+        audio_segment = AudioSegment.from_file(audio_stream, format="mp3")
+    except Exception as e:
+        print("❌ Errore nel decodificare l'MP3:", e)
+        return
+
+    # Force resample if needed
+    if audio_segment.frame_rate != 44100:
+        audio_segment = audio_segment.set_frame_rate(44100)
+
+    # Export properly formatted raw audio
+    pcm_audio = io.BytesIO()
+    audio_segment.export(pcm_audio, format="raw")
+    pcm_audio.seek(0)
+
+    # Init pygame mixer with correct format
+    pygame.mixer.init(
+        frequency=audio_segment.frame_rate,
+        size=-audio_segment.sample_width * 8,  # negative = signed
+        channels=audio_segment.channels
+    )
+
+    try:
+        sound = pygame.mixer.Sound(buffer=pcm_audio.read())
+        sound.play()
+
+        while pygame.mixer.get_busy():
+            pygame.time.Clock().tick(10)
+    except Exception as e:
+        print("❌ Errore durante la riproduzione audio:", e)
 
 def find_microphone():
     # Query all available devices

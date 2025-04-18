@@ -11,8 +11,9 @@ imports = {
     "whisper": "whisper",
     "sounddevice": "sd",  # custom alias
     "scipy.io.wavfile": "wav",
-    "simpleaudio": "sa",
     "pydub": "pydub",
+    "numpy": "np",
+    "pygame": "pygame",
 }
 
 print("Checking for required packages... (this may take a while)")
