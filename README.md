@@ -33,6 +33,7 @@ A lightweight Python tool that processes voice input via OpenAI Whisper and resp
 py -3.10 -m venv venv      # Create virtual env
 .\venv\Scripts\activate    # Activate (Windows)
 source venv/bin/activate   # Activate (Linux/Mac)
+```
 
 ### **4️⃣ Install Python Dependencies**
 
@@ -41,8 +42,9 @@ All required packages will be installed automatically, but ensure you're working
 **Required packages:**
 ```bash
 pip install openai edge_tts whisper sounddevice scipy
-
+```
 ### 5️⃣ **Run the Application**
 1. Open a terminal in the project directory
-2.    ```bash
+2. ```bash
 python main.py
+```
