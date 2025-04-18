@@ -22,21 +22,27 @@ async def speak_viola(text, language):
     except Exception as e:
         print("❌ Errore nel decodificare l'MP3:", e)
         return
-
+    
     # Force resample if needed
     if audio_segment.frame_rate != 44100:
         audio_segment = audio_segment.set_frame_rate(44100)
 
-    # Export properly formatted raw audio
+    # Converti in formato standard (16-bit, stereo se necessario)
+    audio_segment = audio_segment.set_sample_width(2)  # 16-bit
+    if audio_segment.channels == 1:
+        audio_segment = audio_segment.set_channels(2)  # Stereo
+
+    # Esporta in raw PCM
     pcm_audio = io.BytesIO()
     audio_segment.export(pcm_audio, format="raw")
     pcm_audio.seek(0)
 
-    # Init pygame mixer with correct format
+    # Inizializza il mixer con parametri fissi
     pygame.mixer.init(
-        frequency=audio_segment.frame_rate,
-        size=-audio_segment.sample_width * 8,  # negative = signed
-        channels=audio_segment.channels
+        frequency=44100,
+        size=-16,  # 16-bit signed
+        channels=2,  # stereo
+        buffer=2048  # buffer più piccolo per ridurre latency
     )
 
     try:

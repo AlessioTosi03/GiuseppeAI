@@ -20,7 +20,7 @@ print("Checking for required packages... (this may take a while)")
 print(f"Do you want to install openai-whisper? (y/n)")
 choice = input().strip().lower()
 if choice == 'y':
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "openai-whisper"])
+    subprocess.run([sys.executable, "-m", "pip", "install", "openai-whisper"], check=True)
 else:
     print(f"Exiting... Openai-whisper is required.")
     sys.exit()
