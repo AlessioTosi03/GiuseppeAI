@@ -19,7 +19,7 @@ A lightweight Python tool that processes voice input via OpenAI Whisper and resp
 
 ### 2️⃣ **Install Dependencies**  
 #### **FFmpeg (Required for Audio Processing)**  
-- **Linux**: Run `sudo apt install ffmpeg mpg321`  
+- **Linux**: Run `sudo apt install ffmpeg`  
 - **Windows**:  
   1. Download FFmpeg from [BtbN's latest build](https://github.com/BtbN/FFmpeg-Builds/releases/latest).  
   2. Extract and [add to PATH](https://www.thewindowsclub.com/how-to-install-ffmpeg-on-windows-10). *(Need help? Ask ChatGPT!)*  
