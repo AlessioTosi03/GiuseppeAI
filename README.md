@@ -6,12 +6,12 @@ A lightweight Python tool that processes voice input via OpenAI Whisper and resp
 
 ---
 
-## ⚠️ Compatibility Notice  
+## Compatibility Notice  
 **OpenAI Whisper does not support Python 3.13**. Use **Python 3.10** for guaranteed stability.  
 
 ---
 
-## 🛠️ Setup Guide  
+## Setup Guide  
 
 ### 1️⃣ **Download the Project**  
 - Click the green **"Code" button** (top right of this page) → **"Download ZIP"**.  
