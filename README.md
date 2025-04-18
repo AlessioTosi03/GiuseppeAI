@@ -46,6 +46,7 @@ pip install openai edge_tts whisper sounddevice scipy
 
 ### 5️⃣ **Run the Application**
 1. Open a terminal in the project directory
-2. ```bash
+2.
+```bash
 python main.py
 ```
